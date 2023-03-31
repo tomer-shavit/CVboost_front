@@ -1,29 +1,44 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import { PageLayout } from "@/components/PageLayout";
-import Button from "@/components/Button";
 import { useRouter } from "next/router";
 import { useState, ChangeEvent } from "react";
 import Input from "@/components/Input";
 import PDFViewer from "@/components/PDFViewer";
 import AnalysisView from "@/components/AnalysisView";
-
-const inter = Inter({ subsets: ["latin"] });
+import { TypingHeader } from "@/components/TypingHeader";
+import ApiLoader from "../components/ApiLoader";
+import useApi from "@/hooks/useApi";
 
 export default function Home() {
-  const router = useRouter();
   const [file, setFile] = useState<File | undefined>();
+  const { data, isLoading, error } = useApi(
+    "/api/analyze-resume",
+    file,
+    "resume"
+  );
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
-    setFile(selectedFile);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = event.target.files?.[0];
+    if (uploadedFile) {
+      setFile(uploadedFile);
+    }
   };
 
   var body;
   if (file == undefined) {
     body = (
-      <div className="flex justify-center content-center">
-        <Input type="file" onChange={handleFileChange} />
+      <div className="flex justify-center items-center h-full wrapper">
+        <div className="flex flex-col items-center">
+          <div className="mb-2">
+            <TypingHeader text="Boost your resume with AI." />
+          </div>
+          <p className="text-gray-200 text-lg mb-10 ">
+            Upload your resume now and receive a detailed analysis on it,
+            supporting only English resumes in PDF format
+          </p>
+          <Input type="file" onChange={handleFileChange} />
+        </div>
       </div>
     );
   } else {
@@ -66,6 +81,7 @@ export default function Home() {
       </div>
     );
   }
+  body = <ApiLoader></ApiLoader>;
 
   return (
     <>
