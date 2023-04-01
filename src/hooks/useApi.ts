@@ -38,8 +38,9 @@ const useApi: UseApiHook = (url, file, fileName) => {
         setLoading(false);
       }
     };
-
-    fetchData();
+    if (file != undefined){
+      fetchData();
+    }
   }, [url, file, fileName]);
 
   return { data, isLoading, error };

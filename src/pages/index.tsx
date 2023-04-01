@@ -1,87 +1,46 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import { PageLayout } from "@/components/PageLayout";
-import { useRouter } from "next/router";
-import { useState, ChangeEvent } from "react";
-import Input from "@/components/Input";
-import PDFViewer from "@/components/PDFViewer";
-import AnalysisView from "@/components/AnalysisView";
-import { TypingHeader } from "@/components/TypingHeader";
+import { useState } from "react";
 import ApiLoader from "../components/ApiLoader";
 import useApi from "@/hooks/useApi";
+import PreUpload from "@/components/PreUpload";
+import PostUpload from "@/components/PostUpload";
 
 export default function Home() {
   const [file, setFile] = useState<File | undefined>();
   const { data, isLoading, error } = useApi(
-    "/api/analyze-resume",
+    "http://localhost:7071/api/ResumeTrigger",
     file,
     "resume"
   );
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = event.target.files?.[0];
-    if (uploadedFile) {
-      setFile(uploadedFile);
-    }
+  const test_res = {
+    bullet_points: ["bullet 1", "bullet 2", "bullet 3", "bullet 4"],
+    score: 80,
+    feedback:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
+      " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
+      " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, " +
+      "sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    edited_lines: [],
   };
 
   var body;
-  if (file == undefined) {
-    body = (
-      <div className="flex justify-center items-center h-full wrapper">
-        <div className="flex flex-col items-center">
-          <div className="mb-2">
-            <TypingHeader text="Boost your resume with AI." />
-          </div>
-          <p className="text-gray-200 text-lg mb-10 ">
-            Upload your resume now and receive a detailed analysis on it,
-            supporting only English resumes in PDF format
-          </p>
-          <Input type="file" onChange={handleFileChange} />
-        </div>
-      </div>
-    );
-  } else {
-    body = (
-      <div className="flex flex-row justify-space items-center">
-        <div className="w-1/2">
-          <PDFViewer file={file}></PDFViewer>
-        </div>
-        <div className="w-1/2 ">
-          <AnalysisView>
-            <p className="font-bold text-4xl text-white mb-6">
-              Your Score is <span className="text-green-400">80</span>/100
-            </p>
-            <p className="text-white max-w-2xl mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              condimentum commodo elit, ac feugiat sapien pulvinar vel. Donec
-              vestibulum ex at arcu varius rhoncus. Vestibulum interdum, metus
-              vel placerat blandit, metus nulla aliquet risus, vitae venenatis
-              sapien ipsum id nunc. Praesent vestibulum velit nisl, quis
-              interdum lectus viverra id. Maecenas mattis sapien nec nisi
-              suscipit convallis. Curabitur euismod venenatis nunc, nec
-              scelerisque justo malesuada ac. Fusce eget fringilla mauris, non
-              imperdiet mi. Nam non pulvinar ipsum. Duis sed turpis ut nisl
-              iaculis lacinia.
-            </p>
-            <p className="text-white max-w-2xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              condimentum commodo elit, ac feugiat sapien pulvinar vel. Donec
-              vestibulum ex at arcu varius rhoncus. Vestibulum interdum, metus
-              vel placerat blandit, metus nulla aliquet risus, vitae venenatis
-              sapien ipsum id nunc. Praesent vestibulum velit nisl, quis
-              interdum lectus viverra id. Maecenas mattis sapien nec nisi
-              suscipit convallis. Curabitur euismod venenatis nunc, nec
-              scelerisque justo malesuada ac. Fusce eget fringilla mauris, non
-              imperdiet mi. Nam non pulvinar ipsum. Duis sed turpis ut nisl
-              iaculis lacinia.
-            </p>
-          </AnalysisView>
-        </div>
-      </div>
-    );
+  if (file == null && isLoading == false) {
+    body = <PreUpload setFile={setFile}></PreUpload>;
+  } else if (isLoading == true) {
+    body = <ApiLoader></ApiLoader>;
+  } else if (file && isLoading == false && data != undefined) {
+    body = <PostUpload file={file} data={data}></PostUpload>;
   }
-  body = <ApiLoader></ApiLoader>;
+
+  // if (file == null && isLoading == false) {
+  //   body = <PreUpload setFile={setFile}></PreUpload>;
+  // } else if (file != undefined) {
+  //   body = <PostUpload file={file} data={test_res}></PostUpload>;
+  // }
+
+  // body = <ApiLoader></ApiLoader>;
 
   return (
     <>

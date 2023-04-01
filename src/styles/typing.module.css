@@ -1,7 +1,7 @@
 .wrapper {
     /*This part is important for centering*/
     display: grid;
-    place-items: center;
+    place-items: start;
   }
   
   .typing {
@@ -9,7 +9,8 @@
     animation: typing 2s steps(25), blink 1s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
-    /* border-right: 20px solid; */
+    padding-right: 0.75rem;
+    border-right: 20px solid;
   }
   
   @keyframes typing {
