@@ -1,6 +1,9 @@
 export type GptApiResponse = {
-  score: number;
   edited_lines: Array<[string, number, number]>;
+  score: {[key: string]: number};
+  clarity: string;
+  relevance: string;
+  achievements: string;
+  keywords: string;
   feedback: string;
-  bullet_points: Array<string>
 }
