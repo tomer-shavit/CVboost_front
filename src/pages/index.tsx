@@ -9,20 +9,55 @@ import PostUpload from "@/components/PostUpload";
 export default function Home() {
   const [file, setFile] = useState<File | undefined>();
   const { data, isLoading, error } = useApi(
-    "http://localhost:7071/api/ResumeTrigger",
+    "https://func-cvboost.azurewebsites.net/api/resumetrigger",
     file,
     "resume"
   );
 
   const test_res = {
-    bullet_points: ["bullet 1", "bullet 2", "bullet 3", "bullet 4"],
-    score: 80,
+    edited_lines: [
+      {
+        text: "Developed a sleek dashboard for monitoring stocks and crypto investments using React with Next.js and Typescript for the front end and APIs for up-to-date prices. Implemented a secure PostgreSQL database following industry best practices.",
+        start: [35.040000915527344, 610.659912109375],
+        end: [553.0997924804688, 770.1380004882812],
+      },
+      {
+        text: "Launched a successful cyclist clothing brand that generated over $450,000 in revenue. Built and managed a team of designers, customer support agents, and logistics managers.",
+        start: [35.040000915527344, 294.2299499511719],
+        end: [553.81982421875, 408.7480163574219],
+      },
+      {
+        text: "Collaborated with a team to develop an end-to-end system that boosted sales of time-sensitive products. Created a React-based front-end with a QR code scanner for seamless access to product data and designed and deployed a Flask-based cloud server for streamlined data management.",
+        start: [35.040000915527344, 243.71237182617188],
+        end: [561.3695678710938, 286.433349609375],
+      },
+      {
+        text: "Proficient in Javascript, Typescript, Python, C/C++, Java, SQL, Azure Serverless Function, Docker, Linux, React, Asynchronous Programming, MongoDB, Azure Application Insights, GraphQL, PostgreSQL, Threads, Next.js, Node.js, Flask, Redux, Redis, Sass, Git, and Tailwind.",
+        start: [35.040000915527344, 416.22998046875],
+        end: [557.0308227539062, 474.4805908203125],
+      },
+      {
+        text: "Instructed university students in Python, C, and C++ covering algorithms implementation, data structures, test preparation, and advanced programming concepts.",
+        start: [35.040000915527344, 483.42999267578125],
+        end: [548.8997802734375, 526.1279907226562],
+      },
+    ],
+    score: {
+      clarity: 90,
+      relevance: 95,
+      achievements: 85,
+      keywords: 95,
+    },
+    clarity:
+      "Your resume is well-organized and easy to read. The font size is consistent throughout the document, and the bullet points make it easy to skim and quickly understand your experience and skills. However, there are a few areas where you could improve clarity, such as providing more specific details about your projects and experiences.",
+    relevance:
+      "Your resume is highly relevant to the software development and architecture field. You have listed your relevant skills and experiences, including your education, projects, and work experience. Additionally, you have demonstrated your passion for software development, which is a valuable trait in this field.",
+    achievements:
+      "Your resume includes some impressive achievements, such as winning the ASPER-HUJI Hackathon and launching a successful cyclist clothing brand. However, you could provide more specific details about your accomplishments, such as the specific impact your projects had on the organizations you worked with.",
+    keywords:
+      "You have included a comprehensive list of relevant keywords, including programming languages, frameworks, and tools. This makes it easy for potential employers to quickly identify your skills and experience.",
     feedback:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-      " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
-      " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, " +
-      "sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    edited_lines: [],
+      "Overall, your resume is well-written and informative. However, you could improve by providing more specific details about your experiences and accomplishments. Additionally, you could consider tailoring your resume to specific job applications to highlight the most relevant skills and experiences for each position.",
   };
 
   var body;
@@ -34,13 +69,11 @@ export default function Home() {
     body = <PostUpload file={file} data={data}></PostUpload>;
   }
 
-  // if (file == null && isLoading == false) {
-  //   body = <PreUpload setFile={setFile}></PreUpload>;
-  // } else if (file != undefined) {
-  //   body = <PostUpload file={file} data={test_res}></PostUpload>;
-  // }
-
-  // body = <ApiLoader></ApiLoader>;
+  if (file == null && isLoading == false) {
+    body = <PreUpload setFile={setFile}></PreUpload>;
+  } else if (file != undefined) {
+    body = <PostUpload file={file} data={test_res}></PostUpload>;
+  }
 
   return (
     <>
