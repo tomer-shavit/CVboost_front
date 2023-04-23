@@ -2,6 +2,7 @@ import { GptApiResponse } from "@/types/api_calls";
 import { useEffect, useState } from "react";
 import AnalysisSubTitle from "./AnalysisSubTitle";
 import AnalysisParagraph from "./AnalysisParagraph";
+import ProgressBar from "./ProgressBar";
 
 const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   const [score, setScore] = useState<number>();
@@ -17,18 +18,42 @@ const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   return (
     <div className="p-10 flex flex-col justify-center w-5/6 h-screen">
       <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800">
-        <div className="p-6">
-          <h5 className="mb-4 text-3xl font-medium leading-tight text-neutral-200">
+        <div className="p-8">
+          <h5 className="mb-4 text-3xl font-extrabold leading-tight text-neutral-100">
             Total Score: <span className="text-green-400">{score}</span> / 100
           </h5>
           <AnalysisSubTitle title="Clarity"></AnalysisSubTitle>
           <AnalysisParagraph text={data.clarity}></AnalysisParagraph>
+          <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
+            <div
+              className="h-full text-center text-xs text-white bg-blue-400/80 rounded-full"
+              style={{ width: data.score.clarity + "%" }}
+            ></div>
+          </div>
           <AnalysisSubTitle title="Relevance"></AnalysisSubTitle>
           <AnalysisParagraph text={data.relevance}></AnalysisParagraph>
-          <AnalysisSubTitle title="Achievments"></AnalysisSubTitle>
+          <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
+            <div
+              className="h-full text-center text-xs text-white bg-green-400/80 rounded-full"
+              style={{ width: data.score.relevance + "%" }}
+            ></div>
+          </div>
+          <AnalysisSubTitle title="Achievements"></AnalysisSubTitle>
           <AnalysisParagraph text={data.achievements}></AnalysisParagraph>
+          <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
+            <div
+              className="h-full text-center text-xs text-white bg-yellow-400/80 rounded-full"
+              style={{ width: data.score.achievements + "%" }}
+            ></div>
+          </div>
           <AnalysisSubTitle title="Keywords"></AnalysisSubTitle>
           <AnalysisParagraph text={data.keywords}></AnalysisParagraph>
+          <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
+            <div
+              className="h-full text-center text-xs text-white bg-fuchsia-400/80 rounded-full"
+              style={{ width: data.score.keywords + "%" }}
+            ></div>
+          </div>
           <AnalysisParagraph text={data.feedback}></AnalysisParagraph>
         </div>
       </div>
