@@ -19,7 +19,7 @@ const PostUpload: React.FC<{ file: File; data: GptApiResponse }> = ({
           <PDFViewer file={file}></PDFViewer>
         </m.div>
       </div>
-      <div className="w-1/2 ">
+      <div className="w-1/2">
         <AnalysisView data={data}></AnalysisView>
       </div>
     </div>

@@ -16,9 +16,9 @@ const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
     setScore(totalScore);
   }, [data]);
   return (
-    <div className="p-10 flex flex-col justify-center w-5/6 h-screen">
-      <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800">
-        <div className="p-8">
+    <div className="p-8 flex flex-col justify-center h-[90vh] w-5/6">
+      <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
+        <div className="p-4">
           <h5 className="mb-4 text-3xl font-extrabold leading-tight text-neutral-100">
             Total Score: <span className="text-green-400">{score}</span> / 100
           </h5>
