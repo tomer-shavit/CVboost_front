@@ -3,11 +3,13 @@ import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import { EditedLine } from "@/types/api_calls";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 interface Props {
   file: File;
+  edited_lines: EditedLine[];
 }
 
 const PDFViewer: React.FC<Props> = ({ file }) => {
@@ -17,7 +19,7 @@ const PDFViewer: React.FC<Props> = ({ file }) => {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setScale(0.7);
+        setScale(0.5);
       } else if (width < 1024) {
         setScale(0.7);
       } else {

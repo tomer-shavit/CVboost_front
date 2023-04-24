@@ -8,12 +8,12 @@ type IconMapType = {
 
 const iconMap: IconMapType = {
   Clarity: (
-    <span className="inline-block mr-2">
+    <span className="inline-block mr-2 mt-1">
       <BiTargetLock color="#629BE2" />
     </span>
   ),
   Relevance: (
-    <span className="inline-block mr-2">
+    <span className="inline-block mr-2 mt-1">
       <FaBullseye color="#50C980" />
     </span>
   ),
@@ -23,7 +23,7 @@ const iconMap: IconMapType = {
     </span>
   ),
   Keywords: (
-    <span className="inline-block mr-2">
+    <span className="inline-block mr-2 mt-2">
       <FaTags color="#CF78E1" />
     </span>
   ),
@@ -31,7 +31,7 @@ const iconMap: IconMapType = {
 
 const AnalysisSubTitle: React.FC<{ title: string }> = ({ title }) => {
   return (
-    <h4 className="text-2xl font-bold mb-1 text-neutral-100">
+    <h4 className="text-2xl flex items-center font-bold mb-1 text-neutral-100">
       {iconMap[title]}
       {title}
     </h4>

@@ -19,9 +19,6 @@ const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
     <div className="p-8 flex flex-col justify-center h-[90vh] w-5/6">
       <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
         <div className="p-4">
-          <h5 className="mb-4 text-3xl font-extrabold leading-tight text-neutral-100">
-            Total Score: <span className="text-green-400">{score}</span> / 100
-          </h5>
           <AnalysisSubTitle title="Clarity"></AnalysisSubTitle>
           <AnalysisParagraph text={data.clarity}></AnalysisParagraph>
           <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
@@ -48,13 +45,12 @@ const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
           </div>
           <AnalysisSubTitle title="Keywords"></AnalysisSubTitle>
           <AnalysisParagraph text={data.keywords}></AnalysisParagraph>
-          <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">
+          <div className="w-full h-2 bg-gray-500 rounded-full">
             <div
               className="h-full text-center text-xs text-white bg-fuchsia-400/80 rounded-full"
               style={{ width: data.score.keywords + "%" }}
             ></div>
           </div>
-          <AnalysisParagraph text={data.feedback}></AnalysisParagraph>
         </div>
       </div>
     </div>

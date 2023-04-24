@@ -1,7 +1,6 @@
 type EditedLine = {
-  text: string;
-  start: number[];
-  end: number[];
+ old_line: string;
+  new_line: string;
 }
 export type Score = {
   clarity: number;
