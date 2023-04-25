@@ -18,7 +18,7 @@ function FunnyComments({ text }: TextDisplayProps) {
   }, []);
 
   useEffect(() => {
-    if (elapsedTime >= 6) {
+    if (elapsedTime >= 8) {
       setCurrentLine((line) => (line + 1) % text.length);
       setElapsedTime(0);
     }

@@ -4,6 +4,7 @@ import AnalysisParagraph from "./AnalysisParagraph";
 
 const SummaryView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   const [score, setScore] = useState<number>();
+
   useEffect(() => {
     const totalScore =
       (data.score.clarity +
