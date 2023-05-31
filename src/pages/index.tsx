@@ -66,19 +66,19 @@ export default function Home() {
   };
 
   var body;
-  // if (file == null && isLoading == false) {
-  //   body = <PreUpload setFile={setFile}></PreUpload>;
-  // } else if (isLoading == true) {
-  //   body = <ApiLoader></ApiLoader>;
-  // } else if (file && isLoading == false && data != undefined) {
-  //   body = <PostUpload file={file} data={data}></PostUpload>;
-  // }
-
   if (file == null && isLoading == false) {
     body = <PreUpload setFile={setFile}></PreUpload>;
-  } else if (file != undefined) {
-    body = <PostUpload file={file} data={test_res}></PostUpload>;
+  } else if (isLoading == true) {
+    body = <ApiLoader></ApiLoader>;
+  } else if (file && isLoading == false && data != undefined) {
+    body = <PostUpload file={file} data={data}></PostUpload>;
   }
+
+  // if (file == null && isLoading == false) {
+  //   body = <PreUpload setFile={setFile}></PreUpload>;
+  // } else if (file != undefined) {
+  //   body = <PostUpload file={file} data={test_res}></PostUpload>;
+  // }
 
   return (
     <>

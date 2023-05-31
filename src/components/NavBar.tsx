@@ -11,14 +11,14 @@ const NavBar: React.FC = (props) => {
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow"></div>
         <div>
-          <Link href="/login">
+          {/* <Link href="/login">
             <button className="text-white hover:text-green-300 font-semibold py-2 px-4">
               Log in
             </button>
-          </Link>
+          </Link> */}
           <Link href="/signup">
             <button className="text-white hover:text-green-300 font-semibold py-2 px-4 ">
-              Sign up
+              Hi Tomer
             </button>
           </Link>
         </div>
