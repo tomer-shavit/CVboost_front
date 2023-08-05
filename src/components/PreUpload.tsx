@@ -22,7 +22,8 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
       >
         <TypewriterComponent
           options={{
-            wrapperClassName: "text-white text-4xl lg:text-6xl font-extrabold",
+            wrapperClassName:
+              "text-white text-4xl md:text-5xl lg:text-6xl font-extrabold",
             cursorClassName: "text-white text-4xl lg:text-6xl font-bold",
             cursor: "",
             strings: "Boost your resume with AI.",

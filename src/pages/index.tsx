@@ -23,7 +23,7 @@ export default function Home() {
   } else if (error) {
     body = <SomethingWentWrong></SomethingWentWrong>;
   } else if (file && isLoading == false && data != undefined) {
-    body = <PostUpload file={file} data={data}></PostUpload>;
+    body = <PostUpload data={data}></PostUpload>;
   }
 
   return (
