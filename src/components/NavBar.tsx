@@ -13,8 +13,8 @@ const NavBar: React.FC = (props) => {
           </span>
         </Link>
       </div>
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div className="text-sm lg:flex-grow"></div>
+      <div className="flex items-center">
+        <div className="text-sm flex-grow"></div>
         <div>
           {/* <Link href="/login">
             <button className="text-white hover:text-green-300 font-semibold py-2 px-4">
@@ -22,7 +22,7 @@ const NavBar: React.FC = (props) => {
             </button>
           </Link> */}
           <Link href="/signup">
-            <button className="text-white hover:text-green-300 font-semibold py-2 px-4 ">
+            <button className="text-white hover:text-green-300 font-semibold py-2 ">
               Hi Tomer
             </button>
           </Link>

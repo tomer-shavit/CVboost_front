@@ -18,13 +18,13 @@ const Input: React.FC<InputProps> = ({
       <input
         type="file"
         accept="application/pdf"
-        className="text-lg text-grey-500
+        className="text-grey-500
     file:mr-5 file:py-2 file:px-6
     file:rounded file:border-0
     file:text-lg file:font-medium
     file:bg-green-500 file:text-white
     hover:file:cursor-pointer hover:file:bg-green-600
-    hover:file:text-white "
+    hover:file:text-white"
         onChange={onChange}
       />
     </label>
