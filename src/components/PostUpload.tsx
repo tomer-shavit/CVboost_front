@@ -10,8 +10,8 @@ const PostUpload: React.FC<{ file: File; data: GptApiResponse }> = ({
   data,
 }) => {
   return (
-    <div className="flex  ml-10 flex-row justify-evenly items-center">
-      <div className="w-1/2 flex-col justify-between">
+    <div className="flex flex-col md:flex-row justify-evenly ">
+      <div className="w-full md:w-1/2 md:mb-0 md:flex-col justify-between md:mr-2">
         <m.div
           initial={{ opacity: 0, y: "5%" }}
           animate={{ opacity: 1, y: "0%" }}
@@ -29,7 +29,7 @@ const PostUpload: React.FC<{ file: File; data: GptApiResponse }> = ({
           <SuggestionsView data={data}></SuggestionsView>
         </m.div>
       </div>
-      <div className="w-1/2 flex flex-row justify-center">
+      <div className="w-full md:w-1/2 md:flex md:justify-center">
         <m.div
           initial={{ opacity: 0, y: "5%" }}
           animate={{ opacity: 1, y: "0%" }}

@@ -7,21 +7,13 @@ import { useEffect, useState } from "react";
 const ApiLoader: React.FC = () => {
   const [lines, setLines] = useState<string[]>([]);
   useEffect(() => {
-    // const randomLines = loadingSentences
-    //   .sort(() => Math.random() - 0.5)
-    //   .slice(0, 8);
-    // setLines(randomLines);
-    setLines([
-      "Your resume is being reviewed by our team of ninja robots. They take their job very seriously.",
-      "Hang in there, we're scanning your resume for typos and lies..",
-      "We're taking your resume to new heights. We're talking Everest-level heights.",
-      "Your resume is getting a first-class analysis. Sit back, relax, and enjoy the ride.",
-      "Your resume is in good hands. We have the best analysts this side of the galaxy.",
-      "Your resume is in safe hands. We've got our helmets and safety goggles on for this one.",
-    ]);
+    const randomLines = loadingSentences
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 8);
+    setLines(randomLines);
   }, []);
   return (
-    <div className="w-full flex flex-col justify-center">
+    <div className="w-full flex flex-col justify-center items-center">
       <div className="relative ">
         <m.div
           initial={{ opacity: 0, y: "15%" }}
@@ -40,7 +32,7 @@ const ApiLoader: React.FC = () => {
           </div>
         </m.div>
       </div>
-      <div className="flex justify-center pt-20">
+      <div className="flex justify-center text-center w-11/12 pt-20">
         <FunnyComments text={lines}></FunnyComments>
       </div>
     </div>
