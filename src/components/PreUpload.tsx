@@ -12,13 +12,13 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center mb-16">
       <m.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.75, ease: "easeOut" }}
-        exit={{ opacity: 0, y: "10%" }}
-        className="flex text-center p-4 mb-4"
+        initial={{ opacity: 0, y: "15%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.75, ease: "easeOut", delay: 0.25 }}
+        exit={{ opacity: 0, y: "15%" }}
+        className="flex text-center p-4 mb-2"
       >
         <TypewriterComponent
           options={{
@@ -37,21 +37,23 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
       <m.div
         initial={{ opacity: 0, y: "15%" }}
         animate={{ opacity: 1, y: "0%" }}
-        transition={{ duration: 0.75, ease: "easeOut", delay: 0.15 }}
+        transition={{ duration: 0.75, ease: "easeOut", delay: 0.35 }}
         exit={{ opacity: 0, y: "15%" }}
       >
-        <p className="text-gray-200 lg:text-lg mb-10 text-center pr-4 pl-4 ">
-          Upload your resume now and receive a detailed analysis on it,
-          supporting only English resumes in PDF format
+        <p className="text-gray-200 lg:text-lg mb-8 text-center pr-4 pl-4 ">
+          Want to land your dream job faster? Upload your resume and let our AI
+          analyze it and give you custom feedback.
         </p>
       </m.div>
       <m.div
         initial={{ opacity: 0, y: "15%" }}
         animate={{ opacity: 1, y: "0%" }}
-        transition={{ duration: 0.75, ease: "easeOut", delay: 0.25 }}
+        transition={{ duration: 0.75, ease: "easeOut", delay: 0.45 }}
         exit={{ opacity: 0, y: "15%" }}
+        className="text-center"
       >
-        <Input type="file" onChange={handleFileChange} />
+        <Input type="file" className="mb-2" onChange={handleFileChange} />
+        <p className="mt-4 text-neutral-500">PDF format, English Only.</p>
       </m.div>
     </div>
   );

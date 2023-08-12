@@ -31,7 +31,7 @@ function FunnyComments({ text }: TextDisplayProps) {
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.75, ease: "easeOut", delay: 0.15 }}
       exit={{ opacity: 0, y: "20%" }}
-      className="text-white text-xl pt-10 whitespace-no-wrap"
+      className="text-white text-lg md:text-xl pt-10 whitespace-no-wrap"
     >
       {text[currentLine]}
     </m.div>

@@ -3,9 +3,7 @@ const SubCard: React.FC<{ children: React.ReactNode; last?: boolean }> = ({
   last = false,
 }) => {
   return (
-    <div
-      className={`block rounded-lg ${last ? "" : "mb-8"} dark:bg-slate-600 p-4`}
-    >
+    <div className={`block rounded-lg ${last ? "" : "mb-8"} bg-slate-600 p-4`}>
       {children}
     </div>
   );

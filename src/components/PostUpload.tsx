@@ -34,8 +34,8 @@ const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
       >
         <SuggestionsView data={data}></SuggestionsView>
       </m.div>
-      <p className="col-start-1 col-end-3 text-white mb-4 text-lg text-center">
-        We want to hear your feedback!{" "}
+      <div className="col-start-1 col-end-3 text-white mb-8 md:mb-4 text-lg text-center justify-center">
+        <p>We want to hear your feedback! </p>
         <a
           href={process.env.NEXT_PUBLIC_FEEDBACK_FORM}
           target="_blank"
@@ -43,7 +43,7 @@ const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
         >
           Click Here
         </a>
-      </p>
+      </div>
     </div>
   );
 };

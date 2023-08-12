@@ -13,7 +13,7 @@ const ApiLoader: React.FC = () => {
     setLines(randomLines);
   }, []);
   return (
-    <div className="w-full flex flex-col justify-center items-center">
+    <div className="w-5/6 flex flex-col justify-center items-center mb-16">
       <div className="relative ">
         <m.div
           initial={{ opacity: 0, y: "15%" }}
