@@ -4,45 +4,40 @@ import { GptApiResponse } from "@/types/api_calls";
 import SummaryView from "./SummaryView";
 import SuggestionsView from "./SuggestionsView";
 
-const FORM = "https://forms.gle/tyLvzZaFnphUkd3m6";
-
 const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   return (
-    <div>
-      <div className="flex flex-col md:flex-row justify-evenly">
-        <div className="w-full md:w-1/2 md:mb-0 md:flex-col justify-between md:mr-2">
-          <m.div
-            initial={{ opacity: 0, y: "5%" }}
-            animate={{ opacity: 1, y: "0%" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            exit={{ opacity: 0, y: "5%" }}
-          >
-            <SummaryView data={data}></SummaryView>
-          </m.div>
-          <m.div
-            initial={{ opacity: 0, y: "5%" }}
-            animate={{ opacity: 1, y: "0%" }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
-            exit={{ opacity: 0, y: "5%" }}
-          >
-            <SuggestionsView data={data}></SuggestionsView>
-          </m.div>
-        </div>
-        <div className="w-full md:w-1/2 md:flex md:justify-center">
-          <m.div
-            initial={{ opacity: 0, y: "5%" }}
-            animate={{ opacity: 1, y: "0%" }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-            exit={{ opacity: 0, y: "5%" }}
-          >
-            <AnalysisView data={data}></AnalysisView>
-          </m.div>
-        </div>
-      </div>
-      <p className="text-white mb-6 text-lg text-center">
+    <div className="pl-8 pr-8 pt-4 md:h-[92vh] grid grid-cols-1 md:grid-cols-2 md:grid-rows-6 gap-y-10 md:gap-y-8 md:gap-x-12">
+      <m.div
+        initial={{ opacity: 0, y: "5%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        exit={{ opacity: 0, y: "5%" }}
+        className="col-start-1 md:col-start-1 md:row-start-1 md:row-end-3 overflowy-y-auto rounded-lg"
+      >
+        <SummaryView data={data}></SummaryView>
+      </m.div>
+      <m.div
+        initial={{ opacity: 0, y: "5%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+        exit={{ opacity: 0, y: "5%" }}
+        className="col-start-1 md:col-start-2 md:row-start-1 md:row-end-7 overflow-y-auto rounded-lg"
+      >
+        <AnalysisView data={data}></AnalysisView>
+      </m.div>
+      <m.div
+        initial={{ opacity: 0, y: "5%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
+        exit={{ opacity: 0, y: "5%" }}
+        className="col-start-1 row-start-3 row-end-7 overflow-y-auto rounded-lg"
+      >
+        <SuggestionsView data={data}></SuggestionsView>
+      </m.div>
+      <p className="col-start-1 col-end-3 text-white mb-6 text-lg text-center">
         We want to hear your feedback!{" "}
         <a
-          href={FORM}
+          href={process.env.NEXT_PUBLIC_FEEDBACK_FORM}
           target="_blank"
           className="text-green-400 text-lg font-bold"
         >

@@ -2,6 +2,7 @@ import { GptApiResponse } from "@/types/api_calls";
 import { useEffect, useState } from "react";
 import AnalysisSubTitle from "./AnalysisSubTitle";
 import AnalysisParagraph from "./AnalysisParagraph";
+import { HiOutlineLightningBolt } from "react-icons/hi";
 
 const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   const [score, setScore] = useState<number>();
@@ -15,9 +16,15 @@ const AnalysisView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
     setScore(totalScore);
   }, [data]);
   return (
-    <div className="p-8 flex flex-col justify-center h-[90vh]">
-      <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
+    <div className="flex h-full flex-col justify-center ">
+      <div className="h-full dark:bg-slate-700 p-4 overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
         <div className="p-6 pr-4 pl-4">
+          <h5 className="mb-4 flex items-center text-3xl font-extrabold leading-tight text-neutral-100">
+            <span className="inline-block mr-2 ">
+              <HiOutlineLightningBolt />
+            </span>
+            Analysis:
+          </h5>
           <AnalysisSubTitle title="Clarity"></AnalysisSubTitle>
           <AnalysisParagraph text={data.clarity}></AnalysisParagraph>
           <div className="w-full mb-8 h-2 bg-gray-500 rounded-full">

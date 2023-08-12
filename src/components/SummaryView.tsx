@@ -15,14 +15,17 @@ const SummaryView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
     setScore(totalScore);
   }, [data]);
   return (
-    <div className="p-8 pb-4 flex flex-col justify-center">
-      <div className="block rounded-lg dark:bg-slate-700 p-4 h-max overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
-        <div className="p-4 pb-0">
-          <h5 className="mb-4 text-3xl font-extrabold leading-tight text-neutral-100">
-            Total Score: <span className="text-green-400">{score}</span> / 100
+    <div className="flex h-full flex-col justify-center ">
+      <div className="dark:bg-slate-700 h-full p-8 pb-4 overflow-y-auto scrollbar-thin scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800 ">
+        <div className="flex lg:flex-row flex-col">
+          <h5 className="text-3xl lg:pr-2 font-extrabold leading-tight text-neutral-100">
+            Total Score:
           </h5>
-          <AnalysisParagraph text={data.feedback}></AnalysisParagraph>
+          <h5 className="mb-4 text-3xl font-extrabold leading-tight text-neutral-100">
+            <span className="text-green-400">{score}</span> / 100
+          </h5>
         </div>
+        <AnalysisParagraph text={data.feedback}></AnalysisParagraph>
       </div>
     </div>
   );

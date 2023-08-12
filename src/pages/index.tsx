@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { PageLayout } from "@/components/PageLayout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ApiLoader from "../components/ApiLoader";
 import useApi from "@/hooks/useApi";
 import PreUpload from "@/components/PreUpload";
@@ -10,7 +10,7 @@ import SomethingWentWrong from "@/components/SomethingWentWrong";
 export default function Home() {
   const [file, setFile] = useState<File | undefined>();
   const { data, isLoading, error } = useApi(
-    "https://func-cvboost.azurewebsites.net/api/resumetrigger",
+    process.env.NEXT_PUBLIC_BOOST_FUNC_API as string,
     file,
     "resume"
   );

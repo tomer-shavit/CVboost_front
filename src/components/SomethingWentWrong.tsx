@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { motion as m } from "framer-motion";
 
-const FORM = "https://forms.gle/tmhduogmZfmcdm9d9";
-
 const SomethingWentWrong: React.FC = () => {
   const openLinkInNewTab = (url: string) => {
     window.open(url, "_blank");
@@ -39,7 +37,9 @@ const SomethingWentWrong: React.FC = () => {
         </p>
         <a
           className="text-green-400 hover:green-600 text-2xl mt-2 font-semibold cursor-pointer"
-          onClick={() => openLinkInNewTab(FORM)}
+          onClick={() =>
+            openLinkInNewTab(process.env.NEXT_PUBLIC_BUG_FORM as string)
+          }
         >
           Click Here
         </a>
