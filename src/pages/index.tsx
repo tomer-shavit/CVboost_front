@@ -15,16 +15,16 @@ export default function Home() {
     "resume"
   );
 
-  var body = <SomethingWentWrong></SomethingWentWrong>;
-  // if (file == null && isLoading == false) {
-  //   body = <PreUpload setFile={setFile}></PreUpload>;
-  // } else if (isLoading == true) {
-  //   body = <ApiLoader></ApiLoader>;
-  // } else if (error) {
-  //   body = <SomethingWentWrong></SomethingWentWrong>;
-  // } else if (file && isLoading == false && data != undefined) {
-  //   body = <PostUpload data={data}></PostUpload>;
-  // }
+  var body;
+  if (file == null && isLoading == false) {
+    body = <PreUpload setFile={setFile}></PreUpload>;
+  } else if (isLoading == true) {
+    body = <ApiLoader></ApiLoader>;
+  } else if (error) {
+    body = <SomethingWentWrong></SomethingWentWrong>;
+  } else if (file && isLoading == false && data != undefined) {
+    body = <PostUpload data={data}></PostUpload>;
+  }
 
   return (
     <>
