@@ -6,13 +6,13 @@ import SuggestionsView from "./SuggestionsView";
 
 const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   return (
-    <div className="pl-8 pr-8 pt-4 md:h-[92vh] grid grid-cols-1 md:grid-cols-2 md:grid-rows-6 gap-y-10 md:gap-y-8 md:gap-x-12">
+    <div className="pl-8 pr-8 pt-4 md:h-[91vh] grid grid-cols-1 md:grid-cols-2 md:grid-rows-6 gap-y-10 md:gap-y-8 md:gap-x-12">
       <m.div
         initial={{ opacity: 0, y: "5%" }}
         animate={{ opacity: 1, y: "0%" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         exit={{ opacity: 0, y: "5%" }}
-        className="col-start-1 md:col-start-1 md:row-start-1 md:row-end-3 overflowy-y-auto rounded-lg"
+        className="col-start-1  md:row-start-1 md:row-end-3 overflowy-y-hidden rounded-lg"
       >
         <SummaryView data={data}></SummaryView>
       </m.div>
@@ -34,7 +34,7 @@ const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
       >
         <SuggestionsView data={data}></SuggestionsView>
       </m.div>
-      <p className="col-start-1 col-end-3 text-white mb-6 text-lg text-center">
+      <p className="col-start-1 col-end-3 text-white mb-4 text-lg text-center">
         We want to hear your feedback!{" "}
         <a
           href={process.env.NEXT_PUBLIC_FEEDBACK_FORM}

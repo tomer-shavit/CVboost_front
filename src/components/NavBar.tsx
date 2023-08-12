@@ -21,11 +21,11 @@ const NavBar: React.FC = (props) => {
               Log in
             </button>
           </Link> */}
-          <Link href="/signup">
+          {/* <Link href="/signup">
             <button className="text-white hover:text-green-300 font-semibold py-2 ">
               Hi Tomer
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
