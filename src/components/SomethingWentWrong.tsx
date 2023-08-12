@@ -29,10 +29,10 @@ const SomethingWentWrong: React.FC = () => {
         exit={{ opacity: 0, y: "10%" }}
         className="flex flex-col items-center"
       >
-        <p className="text-white text-2xl  mt-4">
+        <p className="text-white text-2xl text-center mt-2">
           Oops.. Somehting went wrong on our side.
         </p>
-        <p className="text-white text-2xl  mt-2">
+        <p className="text-white text-2xl text-center mt-6">
           Fill this form to help us imporve:
         </p>
         <a
