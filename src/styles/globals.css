@@ -12,3 +12,20 @@
 .cl-userButtonPopoverCard {
   width: min(80%, 260px);
 }
+
+.cl-modalContent {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+.cl-card {
+  width: min(100%, 720px);
+}
+.cl-page {
+}
+
+.cl-modalBackdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
