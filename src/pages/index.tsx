@@ -1,6 +1,7 @@
+import { useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import { PageLayout } from "@/components/PageLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApiLoader from "../components/ApiLoader";
 import useApi from "@/hooks/useApi";
 import PreUpload from "@/components/PreUpload";

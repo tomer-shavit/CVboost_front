@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes } from "react";
-import { text } from "stream/consumers";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
@@ -14,17 +13,16 @@ const Input: React.FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <label className=" justify-center text-center">
+    <label
+      className=" justify-center text-center cursor-pointer px-10 py-3 md:py-4 text-xl font-semibold  text-white transition duration-300 rounded-lg hover:from-green-600 hover:to-cyan-600 ease bg-gradient-to-br from-green-500 to-cyan-500 md:w-auto"
+      htmlFor="resume-file"
+    >
+      Upload Resume
       <input
         type="file"
         accept="application/pdf"
-        className="text-grey-500
-    file:mr-5 file:py-2 file:px-6
-    file:rounded file:border-0
-    file:text-lg file:font-medium
-    file:bg-green-500 file:text-white
-    hover:file:cursor-pointer hover:file:bg-green-600
-    hover:file:text-white"
+        id="resume-file"
+        className="hidden"
         onChange={onChange}
       />
     </label>
