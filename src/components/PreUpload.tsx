@@ -21,7 +21,14 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   var cta = <div></div>;
 
   if (isSignedIn) {
-    cta = <Input type="file" className="mb-2" onChange={handleFileChange} />;
+    cta = (
+      <Input
+        type="file"
+        className="mb-2"
+        text="Upload Resume"
+        onChange={handleFileChange}
+      />
+    );
   } else if (!isSignedIn) {
     cta = (
       <Link href={"/signup"}>
