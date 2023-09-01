@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 80%;
 }
 
@@ -20,8 +21,6 @@
 }
 .cl-card {
   width: min(100%, 720px);
-}
-.cl-page {
 }
 
 .cl-modalBackdrop {

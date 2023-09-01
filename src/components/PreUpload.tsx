@@ -38,13 +38,13 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center mb-16">
+    <div className="flex flex-col items-center justify-center mb-28">
       <m.div
         initial={{ opacity: 0, y: "15%" }}
         animate={{ opacity: 1, y: "0%" }}
         transition={{ duration: 0.75, ease: "easeOut", delay: 0.25 }}
         exit={{ opacity: 0, y: "15%" }}
-        className="flex text-center p-4 mb-2"
+        className="flex text-center p-4 mb2"
       >
         <TypewriterComponent
           options={{
