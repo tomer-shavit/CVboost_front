@@ -4,7 +4,13 @@ import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          footer: "hidden",
+        },
+      }}
+    >
       <Component {...pageProps} />
     </ClerkProvider>
   );
