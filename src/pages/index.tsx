@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/nextjs";
 import Head from "next/head";
 import { PageLayout } from "@/components/PageLayout";
 import { useEffect, useState } from "react";

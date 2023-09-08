@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-  relationMode = "prisma"
+  relationMode = "prisma" 
 }
 
 // Define the database schema using Prisma
@@ -32,7 +32,8 @@ model ResumeBoost {
   userId               Int
   createdAt            DateTime @default(now()) 
   boostVersion      Int     // Enum BoostVerstion saved in resume function
-  user                     User     @relation(fields: [userId], references: [userId])
+  resumeHash Bytes // Using SHA 256
+  user                     User     @relation(fields: [userId], references: [userId], onDelete: Cascade)
   feedbacks               Feedback[]
 }
 
@@ -45,7 +46,7 @@ model Feedback {
   feedbackText      String    @db.VarChar(1200) // The feedback text MUST be compressed! 
   score             Int
   isLiked           Boolean
-  boost             ResumeBoost @relation(fields: [boostId], references: [boostId])
+  boost             ResumeBoost @relation(fields: [boostId], references: [boostId], onDelete: Cascade)
   @@index([boostId], name: "idxBoostId")
 }
 
