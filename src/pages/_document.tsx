@@ -5,6 +5,11 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link
+          rel="manifest"
+          href="/site.webmanifest"
+          crossOrigin="use-credentials"
+        />
+        <link
           rel="apple-touch-icon"
           sizes="180x180"
           href="/apple-touch-icon.png"
@@ -21,7 +26,6 @@ export default function Document() {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <body className="overscroll-none overflow-x-none selection:bg-green-600 scrollbar-thin scrollbar-track-slate-700 scroll scrollbar-thumb-rounded scrollbar-thumb-slate-800">
         <Main />
