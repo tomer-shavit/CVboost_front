@@ -3,7 +3,6 @@ import { motion as m } from "framer-motion";
 import Input from "@/components/Input";
 import TypewriterComponent from "typewriter-effect";
 import Button from "./Button";
-import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 
 const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
