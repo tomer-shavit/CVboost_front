@@ -7,7 +7,14 @@ const NavBar: React.FC = (props) => {
   var userGreeting = <div></div>;
 
   if (session) {
-    userGreeting = <div onClick={() => signOut()}>Hi {session.user?.name}</div>;
+    userGreeting = (
+      <div
+        className="text-white font-semibold text-md cursor-pointer"
+        onClick={() => signOut()}
+      >
+        Hi {session.user?.name}
+      </div>
+    );
   } else {
     userGreeting = (
       <div>

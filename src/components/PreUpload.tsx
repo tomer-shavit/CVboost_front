@@ -3,8 +3,7 @@ import { motion as m } from "framer-motion";
 import Input from "@/components/Input";
 import TypewriterComponent from "typewriter-effect";
 import Button from "./Button";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   setFile,
@@ -23,11 +22,7 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   if (session) {
     cta = <Input type="file" className="mb-2" onChange={handleFileChange} />;
   } else {
-    cta = (
-      <Link href={"/signup"}>
-        <Button>Lets Start!</Button>
-      </Link>
-    );
+    cta = <Button onClick={() => signIn()}>Lets Start!</Button>;
   }
 
   return (
