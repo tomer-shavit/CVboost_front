@@ -2,14 +2,13 @@
 import { motion as m } from "framer-motion";
 import Input from "@/components/Input";
 import TypewriterComponent from "typewriter-effect";
-import { useUser } from "@clerk/nextjs";
 import Button from "./Button";
-import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   setFile,
 }) => {
-  const { isSignedIn } = useUser();
+  const { data: session } = useSession();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0];
@@ -20,21 +19,17 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
 
   var cta = <div></div>;
 
-  if (isSignedIn) {
+  if (session) {
     cta = (
       <Input
         type="file"
-        className="mb-2"
         text="Upload Resume"
+        className="mb-2"
         onChange={handleFileChange}
       />
     );
-  } else if (!isSignedIn) {
-    cta = (
-      <Link href={"/signup"}>
-        <Button>Lets Start!</Button>
-      </Link>
-    );
+  } else {
+    cta = <Button onClick={() => signIn()}>Lets Start!</Button>;
   }
 
   return (

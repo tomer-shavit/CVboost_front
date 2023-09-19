@@ -3,17 +3,18 @@ import { useEffect, useState } from "react";
 import AnalysisParagraph from "./AnalysisParagraph";
 import Card from "./Card";
 import SubCard from "./SubCard";
+import { FEEDBACKS_AMOUNT } from "@/constants";
 
 const SummaryView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
   const [score, setScore] = useState<number>();
 
   useEffect(() => {
     const totalScore =
-      (data.score.clarity +
-        data.score.relevance +
-        data.score.achievements +
-        data.score.keywords) /
-      Object.keys(data.score).length;
+      (data.clarity.score +
+        data.relevance.score +
+        data.achievements.score +
+        data.keywords.score) /
+      FEEDBACKS_AMOUNT;
     setScore(totalScore);
   }, [data]);
   return (
@@ -27,7 +28,7 @@ const SummaryView: React.FC<{ data: GptApiResponse }> = ({ data }) => {
         </h5>
       </div>
       <SubCard last>
-        <AnalysisParagraph text={data.feedback}></AnalysisParagraph>
+        <AnalysisParagraph text={data.summary}></AnalysisParagraph>
       </SubCard>
     </Card>
   );

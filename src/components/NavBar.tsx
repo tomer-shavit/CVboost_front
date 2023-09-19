@@ -1,26 +1,29 @@
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { useAuth } from "@clerk/nextjs";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const NavBar: React.FC = (props) => {
-  const { isLoaded, userId } = useAuth();
+  const { data: session } = useSession();
+
   var userGreeting = <div></div>;
 
-  if (userId) {
-    userGreeting = <UserButton afterSignOutUrl="/"></UserButton>;
-  } else if (isLoaded && !userId) {
+  if (session) {
+    userGreeting = (
+      <div
+        className="text-white font-semibold text-md cursor-pointer"
+        onClick={() => signOut()}
+      >
+        Hi {session.user?.name}
+      </div>
+    );
+  } else {
     userGreeting = (
       <div>
-        <Link href="/signin">
-          <button className="text-white hover:text-green-300 font-semibold py-2 px-4">
-            Log in
-          </button>
-        </Link>
-        <Link href="/signup">
-          <button className="text-white hover:text-green-300 font-semibold py-2 ">
-            Sign up
-          </button>
-        </Link>
+        <button
+          onClick={() => signIn()}
+          className="text-white hover:text-green-300 font-semibold py-2 "
+        >
+          Sign up
+        </button>
       </div>
     );
   }
