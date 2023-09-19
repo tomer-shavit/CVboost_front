@@ -5,6 +5,11 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from "../../../../prisma/client";
 import planetScaleAdapter from "@/adapters/planetScale";
 
+const test = () => {
+  console.log("GOOGLE_ID: ", process.env.GOOGLE_ID);
+  return "123";
+};
+
 export const authOptions = {
   adapter: planetScaleAdapter(prisma),
   providers: [
@@ -24,7 +29,7 @@ export const authOptions = {
   // session: {
   //   strategy: "jwt" as SessionStrategy,
   // },
-  secret: "123",
+  secret: test(),
 };
 
 export default NextAuth(authOptions);
