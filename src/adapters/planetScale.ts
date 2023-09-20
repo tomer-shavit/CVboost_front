@@ -41,9 +41,8 @@ const getUserByEmail = async (email: string) => {
 };
 
 export default function planetScaleAdapter(prismaClient: PrismaClient) {
-  // return {
-  //   ...PrismaAdapter(prismaClient),
-  //   createUser: customCreateUser,
-  // };
-  return PrismaAdapter(prismaClient);
+  return {
+    ...PrismaAdapter(prismaClient),
+    createUser: customCreateUser,
+  };
 }
