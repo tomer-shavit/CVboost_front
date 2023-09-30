@@ -41,7 +41,7 @@ model ResumeBoost {
   resumeHash Bytes // Using SHA 256
   user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   feedbacks               Feedback[]
-  @@index([resumeHash], name: "idxResumeHash")
+  @@index([resumeHash(length: 32)], name: "idxResumeHash")
 }
 
 
