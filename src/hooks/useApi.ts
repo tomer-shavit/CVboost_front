@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { GptApiResponse } from '@/types/api_calls';
+import { useState, useEffect } from "react";
+import { GptApiResponse } from "@/types/api_calls";
 
 type ApiError = {
   message: string;
@@ -11,9 +11,14 @@ type UseApiResult = {
   error: ApiError | null;
 };
 
-type UseApiHook = (url: string, file?: File, fileName?:string) => UseApiResult;
+type UseApiHook = (
+  url: string,
+  file?: File,
+  fileName?: string,
+  userId?: string
+) => UseApiResult;
 
-const useApi: UseApiHook = (url, file, fileName) => {
+const useApi: UseApiHook = (url, file, fileName, userId) => {
   const [data, setData] = useState<GptApiResponse | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<ApiError | null>(null);
@@ -26,8 +31,11 @@ const useApi: UseApiHook = (url, file, fileName) => {
         if (file) {
           formData.append(fileName ? fileName : "default_name", file);
         }
+        if (userId) {
+          formData.append("userId", userId); // Add userId to the request body
+        }
         const response = await fetch(url, {
-          method: 'POST',
+          method: "POST",
           body: formData,
         });
         const json = await response.json();
@@ -38,10 +46,10 @@ const useApi: UseApiHook = (url, file, fileName) => {
         setLoading(false);
       }
     };
-    if (file != undefined){
+    if (file != undefined) {
       fetchData();
     }
-  }, [url, file, fileName]);
+  }, [url, file, fileName, userId]);
 
   return { data, isLoading, error };
 };

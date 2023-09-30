@@ -13,18 +13,17 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET as string,
     }),
   ],
-  // callbacks: {
-  //   session: async ({ session, token }: { session: Session; token: JWT }) => {
-  //     if (session?.user) {
-  //       session.user.id = token.sub ?? "NO_TOKEN_SUB";
-  //     }
-  //     return session;
-  //   },
-  // },
-  // session: {
-  //   strategy: "jwt" as SessionStrategy,
-  // },
-  //
+  callbacks: {
+    session: async ({ session, token }: { session: Session; token: JWT }) => {
+      if (session?.user) {
+        session.user.id = token.sub ?? "NO_TOKEN_SUB";
+      }
+      return session;
+    },
+  },
+  session: {
+    strategy: "jwt" as SessionStrategy,
+  },
 
   secret: process.env.NEXTAUTH_SECRET,
 };

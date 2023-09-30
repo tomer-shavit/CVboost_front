@@ -6,14 +6,20 @@ import useApi from "@/hooks/useApi";
 import PreUpload from "@/components/PreUpload";
 import PostUpload from "@/components/PostUpload";
 import SomethingWentWrong from "@/components/SomethingWentWrong";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const [file, setFile] = useState<File | undefined>();
+  const { data: session } = useSession();
   const { data, isLoading, error } = useApi(
     process.env.NEXT_PUBLIC_BOOST_FUNC_API as string,
     file,
-    "resume"
+    "resume",
+    session?.user?.id
   );
+  useEffect(() => {
+    console.log("session", session);
+  }, [session]);
 
   var body;
   if (file == null && isLoading == false) {
