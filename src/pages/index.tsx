@@ -33,15 +33,16 @@ export default function Home() {
     <>
       <Head>
         <title>CVBoost</title>
-        <meta property="og:title" content="CVBoost" />
-        <meta property="og:url" content="https://cvboost.ai/" />
-        <meta property="og:description" content="Boost your resume now!" />
-        <meta property="og:image" content="/favicon-32x32.png" />
         <link
           rel="manifest"
           href="/site.webmanifest"
           crossOrigin="use-credentials"
         />
+        <meta property="og:title" content="CVBoost" />
+        <meta property="og:url" content="https://cvboost.ai/" />
+        <meta property="og:description" content="Boost your resume now!" />
+        <meta property="og:image" content="/favicon-32x32.png" />
+        <meta property="og:image" content="/favicon.ico" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageLayout>{body}</PageLayout>
