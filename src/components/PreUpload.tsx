@@ -10,7 +10,12 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   const { data: session, status } = useSession();
   const [body, setBody] = useState(<div></div>);
   useEffect(() => {
-    if (status !== "loading" && session) {
+    if (
+      status !== "loading" &&
+      session &&
+      session.user &&
+      session.user.resumeBoostsAvailable != -1
+    ) {
       setBody(
         <LoggedInView session={session} setFile={setFile}></LoggedInView>
       );

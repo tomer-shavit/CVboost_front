@@ -7,6 +7,11 @@ export default function Document() {
       className="min-h-full bg-gradient-to-b from-gray-700 to-gray-900 h-full w-full"
     >
       <Head>
+        <meta property="og:title" content="CVBoost" />
+        <meta property="og:url" content="https://cvboost.ai/" />
+        <meta property="og:description" content="Boost your resume now" />
+        <meta property="og:image" content="/favicon-32x32.png" />
+
         <link
           rel="manifest"
           href="/site.webmanifest"
