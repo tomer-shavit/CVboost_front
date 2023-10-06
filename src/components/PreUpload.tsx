@@ -1,33 +1,24 @@
 "use client";
-import { motion as m } from "framer-motion";
-import Input from "@/components/Input";
-import TypewriterComponent from "typewriter-effect";
-import Button from "./Button";
-import { signIn, useSession } from "next-auth/react";
-import { stat } from "fs";
-import HasBoosts from "./HasBoosts";
-import NoMoreBoosts from "./NoMoreBoosts";
+import { useSession } from "next-auth/react";
 import LoggedInView from "./LoggedInView";
 import LoggedOutView from "./LoggedOutView";
+import React, { useEffect, useState } from "react";
 
 const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   setFile,
 }) => {
   const { data: session, status } = useSession();
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = event.target.files?.[0];
-    if (uploadedFile) {
-      setFile(uploadedFile);
+  const [body, setBody] = useState(<div></div>);
+  useEffect(() => {
+    if (status !== "loading" && session) {
+      setBody(
+        <LoggedInView session={session} setFile={setFile}></LoggedInView>
+      );
+    } else {
+      setBody(<LoggedOutView></LoggedOutView>);
     }
-  };
+  }, [session, status, body, setFile]);
 
-  let body = <div></div>;
-  if (status !== "loading" && session) {
-    body = <LoggedInView session={session} setFile={setFile}></LoggedInView>;
-  } else {
-    body = <LoggedOutView></LoggedOutView>;
-  }
   return <div>{body}</div>;
 };
 export default PreUpload;

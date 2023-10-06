@@ -34,7 +34,7 @@ const LoggedOutView: React.FC = () => {
         transition={{ duration: 0.75, ease: "easeOut", delay: 0.35 }}
         exit={{ opacity: 0, y: "15%" }}
       >
-        <p className="text-gray-200 lg:text-lg mb-8 md:mt-12 text-center pr-4 pl-4 ">
+        <p className="text-gray-200 lg:text-lg mb-8 md:mb-10 md:mt-4 text-center pr-4 pl-4 ">
           Want to land your dream job faster? Upload your resume and let our AI
           analyze it and give you custom feedback.
         </p>
