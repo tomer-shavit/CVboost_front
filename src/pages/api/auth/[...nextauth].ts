@@ -17,7 +17,21 @@ export const authOptions = {
     session: async ({ session, token }: { session: Session; token: JWT }) => {
       if (session?.user) {
         session.user.id = token.sub ?? "NO_TOKEN_SUB";
+        // Query resumeBoostsAvailable from database using user id
+        const user = await prisma.user.findUnique({
+          where: {
+            id: token.sub,
+          },
+          select: {
+            resumeBoostsAvailable: true,
+          },
+        });
+        // Assign resumeBoostsAvailable to session object
+        session.user.resumeBoostsAvailable = user
+          ? user.resumeBoostsAvailable
+          : 0;
       }
+      // Return modified session object
       return session;
     },
   },

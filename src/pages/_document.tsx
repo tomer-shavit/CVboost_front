@@ -2,7 +2,10 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html
+      lang="en"
+      className="min-h-full bg-gradient-to-b from-gray-700 to-gray-900 h-full w-full"
+    >
       <Head>
         <link
           rel="manifest"

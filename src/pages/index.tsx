@@ -17,9 +17,6 @@ export default function Home() {
     "resume",
     session?.user?.id
   );
-  useEffect(() => {
-    console.log("session", session);
-  }, [session]);
 
   var body;
   if (file == null && isLoading == false) {

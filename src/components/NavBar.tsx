@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const NavBar: React.FC = (props) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   var userGreeting = <div></div>;
 
-  if (session) {
+  if (status === "loading") {
+    userGreeting = <div></div>;
+  } else if (session) {
     userGreeting = (
       <div
         className="text-white font-semibold text-md cursor-pointer"
@@ -29,10 +31,11 @@ const NavBar: React.FC = (props) => {
   }
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent p-4 pl-6 pr-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <Link href="/">
-          <span className="font-semibold text-2xl tracking-tight">CVBoost</span>
-        </Link>
+      <div
+        className="flex items-center flex-shrink-0 text-white mr-6"
+        onClick={() => window.location.reload()}
+      >
+        <span className="font-semibold text-2xl tracking-tight">CVBoost</span>
       </div>
       <div className="flex items-center">
         <div className="text-sm flex-grow"></div>

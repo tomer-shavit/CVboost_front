@@ -34,7 +34,7 @@ const PostUpload: React.FC<{ data: GptApiResponse }> = ({ data }) => {
       >
         <SuggestionsView data={data}></SuggestionsView>
       </m.div>
-      <div className="col-start-1 col-end-3 text-white mb-8 md:mb-4 text-lg text-center justify-center">
+      <div className="col-start-1 col-end-3 text-white mb-16 md:mb-6 text-lg text-center justify-center">
         <p>We want to hear your feedback! </p>
         <a
           href={process.env.NEXT_PUBLIC_FEEDBACK_FORM}
