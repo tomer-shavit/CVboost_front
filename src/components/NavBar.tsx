@@ -32,7 +32,7 @@ const NavBar: React.FC = (props) => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent p-4 pl-6 pr-6">
       <div
-        className="flex items-center flex-shrink-0 text-white mr-6"
+        className="flex items-center cursor-pointer flex-shrink-0 text-white mr-6"
         onClick={() => window.location.reload()}
       >
         <span className="font-semibold text-2xl tracking-tight">CVBoost</span>
