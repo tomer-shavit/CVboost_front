@@ -2,6 +2,8 @@
 import { motion as m } from "framer-motion";
 import Input from "@/components/Input";
 import TypewriterComponent from "typewriter-effect";
+import Dropzone from "react-dropzone";
+import { MdUploadFile } from "react-icons/md";
 
 const HasBoosts: React.FC<{
   resumeBoostsAvailable: number;
@@ -13,62 +15,83 @@ const HasBoosts: React.FC<{
       setFile(uploadedFile);
     }
   };
+
   return (
-    <div className="flex flex-col items-center justify-center mb-28">
-      <m.div
-        initial={{ opacity: 0, y: "15%" }}
-        animate={{ opacity: 1, y: "0%" }}
-        transition={{ duration: 0.75, ease: "easeOut", delay: 0.25 }}
-        exit={{ opacity: 0, y: "15%" }}
-        className="flex text-center p-4 mb2"
-      >
-        <TypewriterComponent
-          options={{
-            wrapperClassName:
-              "text-white text-4xl md:text-5xl lg:text-6xl font-extrabold",
-            cursorClassName: "text-white text-4xl lg:text-6xl font-bold",
-            cursor: "",
-            strings: "Boost your resume with AI.",
-            loop: true,
-            delay: 95,
-            deleteSpeed: Infinity,
-            autoStart: true,
-          }}
-        ></TypewriterComponent>
-      </m.div>
-      <m.div
-        initial={{ opacity: 0, y: "15%" }}
-        animate={{ opacity: 1, y: "0%" }}
-        transition={{ duration: 0.75, ease: "easeOut", delay: 0.35 }}
-        exit={{ opacity: 0, y: "15%" }}
-      >
-        <p className="text-gray-200 lg:text-lg mb-8 md:mb-10 md:mt-4 text-center pr-4 pl-4 ">
-          Want to land your dream job faster? Upload your resume and let our AI
-          analyze it and give you custom feedback.
-        </p>
-      </m.div>
-      <m.div
-        initial={{ opacity: 0, y: "15%" }}
-        animate={{ opacity: 1, y: "0%" }}
-        transition={{ duration: 0.75, ease: "easeOut", delay: 0.45 }}
-        exit={{ opacity: 0, y: "15%" }}
-        className="text-center md:mt-2"
-      >
-        <Input
-          type="file"
-          text="Upload Resume"
-          onChange={handleFileChange}
-        ></Input>
-        <p className="mt-6 md:mt-8 text-neutral-400">
-          You have
-          <span className="text-green-500">
-            {" " + resumeBoostsAvailable + " "}
-          </span>
-          Uploads left
-        </p>
-        <p className="mt-2 text-neutral-500">PDF format, English Only.</p>
-      </m.div>
-    </div>
+    <Dropzone onDrop={(acceptedFiles: any) => setFile(acceptedFiles[0])}>
+      {({ getRootProps, getInputProps, isDragActive }) => {
+        return (
+          <div
+            {...getRootProps()}
+            className="flex flex-col items-center justify-center mb-28 relative"
+          >
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <div className="h-screen w-screen absolute flex items-center justify-center">
+                <div
+                  className="
+                  h-screen w-screen
+               bg-gray-900 opacity-30 font-bold rounded-lg p-4 absolute  z-10"
+                ></div>
+                <MdUploadFile className="text-green-400 text-9xl z-20"></MdUploadFile>
+              </div>
+            ) : null}
+            <m.div
+              initial={{ opacity: 0, y: "15%" }}
+              animate={{ opacity: 1, y: "0%" }}
+              transition={{ duration: 0.75, ease: "easeOut", delay: 0.25 }}
+              exit={{ opacity: 0, y: "15%" }}
+              className="flex text-center p-4 mb2"
+            >
+              <TypewriterComponent
+                options={{
+                  wrapperClassName:
+                    "text-white text-4xl md:text-5xl lg:text-6xl font-extrabold",
+                  cursorClassName: "text-white text-4xl lg:text-6xl font-bold",
+                  cursor: "",
+                  strings: "Boost your resume with AI.",
+                  loop: true,
+                  delay: 95,
+                  deleteSpeed: Infinity,
+                  autoStart: true,
+                }}
+              ></TypewriterComponent>
+            </m.div>
+            <m.div
+              initial={{ opacity: 0, y: "15%" }}
+              animate={{ opacity: 1, y: "0%" }}
+              transition={{ duration: 0.75, ease: "easeOut", delay: 0.35 }}
+              exit={{ opacity: 0, y: "15%" }}
+            >
+              <p className="text-gray-200 lg:text-lg mb-8 md:mb-10 md:mt-4 text-center pr-4 pl-4 ">
+                Want to land your dream job faster? Upload your resume and let
+                our AI analyze it and give you custom feedback.
+              </p>
+            </m.div>
+            <m.div
+              initial={{ opacity: 0, y: "15%" }}
+              animate={{ opacity: 1, y: "0%" }}
+              transition={{ duration: 0.75, ease: "easeOut", delay: 0.45 }}
+              exit={{ opacity: 0, y: "15%" }}
+              className="text-center md:mt-2"
+            >
+              <Input
+                type="file"
+                text="Upload Resume"
+                onChange={handleFileChange}
+              ></Input>
+              <p className="mt-6 md:mt-8 text-neutral-400">
+                You have
+                <span className="text-green-500">
+                  {" " + resumeBoostsAvailable + " "}
+                </span>
+                Uploads left
+              </p>
+              <p className="mt-2 text-neutral-500">PDF format, English Only.</p>
+            </m.div>
+          </div>
+        );
+      }}
+    </Dropzone>
   );
 };
 export default HasBoosts;

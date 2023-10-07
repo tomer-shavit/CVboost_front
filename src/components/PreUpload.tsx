@@ -10,7 +10,6 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   const { data: session, status } = useSession();
   const [body, setBody] = useState(<div></div>);
   useEffect(() => {
-    console.log("session", session);
     if (
       status !== "loading" &&
       session &&
