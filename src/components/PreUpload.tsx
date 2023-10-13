@@ -5,8 +5,7 @@ import React, { useEffect, useState } from "react";
 import TypewriterComponent from "typewriter-effect";
 import Button from "./Button";
 import Input from "./Input";
-import Dropzone from "react-dropzone";
-import { MdUploadFile } from "react-icons/md";
+import DropzoneWrapper from "./UploadWrapper";
 
 const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   setFile,
@@ -15,6 +14,7 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   const [title, setTitle] = useState(<div></div>);
   const [subtitle, setSubtitle] = useState(<div></div>);
   const [cta, setCta] = useState(<div></div>);
+  const [body, setBody] = useState(<div></div>);
 
   // Set title
   useEffect(() => {
@@ -139,52 +139,29 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
       session.user.resumeBoostsAvailable > 0
     ) {
       setCta(
-        <Dropzone onDrop={(acceptedFiles: any) => setFile(acceptedFiles[0])}>
-          {({ getRootProps, getInputProps, isDragActive }) => (
-            <div
-              {...getRootProps()}
-              className="h-full w-screen flex flex-col items-center justify-center mb-28 relative"
-            >
-              {isDragActive ? (
-                <div className="h-screen w-full absolute flex items-center justify-center mb-16">
-                  <div
-                    className="
-                  h-screen w-screen
-               bg-gray-900 opacity-30 font-bold rounded-lg p-4 absolute  z-10"
-                  ></div>
-                  <MdUploadFile className="text-green-400 text-9xl z-20"></MdUploadFile>
-                </div>
-              ) : null}
-              <input className="h-full w-screen" {...getInputProps()} />
-
-              <m.div
-                initial={{ opacity: 0, y: "15%" }}
-                animate={{ opacity: 1, y: "0%" }}
-                transition={{ duration: 0.75, ease: "easeOut", delay: 0.45 }}
-                exit={{ opacity: 0, y: "15%" }}
-                className="text-center md:mt-2"
-              >
-                <Input
-                  type="file"
-                  text="Upload Resume"
-                  onChange={handleFileChange}
-                ></Input>
-                <p className="mt-6 md:mt-8 text-neutral-400">
-                  You have
-                  <span className="text-green-500">
-                    {session.user
-                      ? " " + session.user.resumeBoostsAvailable + " "
-                      : " 0 "}
-                  </span>
-                  Uploads left
-                </p>
-                <p className="mt-2 text-neutral-500">
-                  PDF format, English Only.
-                </p>
-              </m.div>
-            </div>
-          )}
-        </Dropzone>
+        <m.div
+          initial={{ opacity: 0, y: "15%" }}
+          animate={{ opacity: 1, y: "0%" }}
+          transition={{ duration: 0.75, ease: "easeOut", delay: 0.45 }}
+          exit={{ opacity: 0, y: "15%" }}
+          className="text-center md:mt-2"
+        >
+          <Input
+            type="file"
+            text="Upload Resume"
+            onChange={handleFileChange}
+          ></Input>
+          <p className="mt-6 md:mt-8 text-neutral-400">
+            You have
+            <span className="text-green-500">
+              {session.user
+                ? " " + session.user.resumeBoostsAvailable + " "
+                : " 0 "}
+            </span>
+            Uploads left
+          </p>
+          <p className="mt-2 text-neutral-500">PDF format, English Only.</p>
+        </m.div>
       );
     } else if (
       session &&
@@ -208,13 +185,26 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
       );
     }
   }, [session, setFile]);
+  useEffect(() => {
+    if (session && session.user && session.user.resumeBoostsAvailable > 0) {
+      console.log(session);
+      setBody(
+        <DropzoneWrapper setFile={setFile}>
+          <div className="flex flex-col items-center justify-center mb-28">
+            {title} {subtitle} {cta}
+          </div>
+        </DropzoneWrapper>
+      );
+    } else {
+      console.log("no session");
+      setBody(
+        <div className="flex flex-col items-center justify-center mb-28">
+          {title} {subtitle} {cta}
+        </div>
+      );
+    }
+  }, [title, subtitle, cta, session, setFile]);
 
-  return (
-    <div className="flex flex-col items-center justify-center mb-28">
-      {title}
-      {subtitle}
-      {cta}
-    </div>
-  );
+  return <div> {body} </div>;
 };
 export default PreUpload;
