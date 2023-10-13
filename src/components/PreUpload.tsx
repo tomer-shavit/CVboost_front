@@ -187,7 +187,6 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
   }, [session, setFile]);
   useEffect(() => {
     if (session && session.user && session.user.resumeBoostsAvailable > 0) {
-      console.log(session);
       setBody(
         <DropzoneWrapper setFile={setFile}>
           <div className="flex flex-col items-center justify-center mb-28">
@@ -196,7 +195,6 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
         </DropzoneWrapper>
       );
     } else {
-      console.log("no session");
       setBody(
         <div className="flex flex-col items-center justify-center mb-28">
           {title} {subtitle} {cta}
