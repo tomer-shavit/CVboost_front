@@ -34,15 +34,19 @@ model User {
 
 // Define the ResumeBoost table
 model ResumeBoost {
-  boostId              Int       @id @default(autoincrement())
-  userId               String
-  createdAt            DateTime @default(now()) 
-  boostVersion      Int     // Enum BoostVerstion saved in resume function
-  resumeHash Bytes // Using SHA 256
-  user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  feedbacks               Feedback[]
+  boostId        Int       @id @default(autoincrement())
+  userId         String
+  createdAt      DateTime  @default(now()) 
+  boostVersion   Int       // Enum BoostVerstion saved in resume function
+  resumeHash     Bytes     // Using SHA 256
+  resumeText     String?   @db.Text // Optional: storing the encrypted resume text
+  salt           Bytes?    // Salt used for encryption 
+  
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  feedbacks      Feedback[]
   @@index([resumeHash(length: 32)], name: "idxResumeHash")
 }
+
 
 
 model Feedback {
@@ -50,8 +54,9 @@ model Feedback {
   boostId           Int
   createdAt         DateTime  @default(now()) 
   feedbackType      Int // Enum FeedbackType saved in resume function
-  feedbackText      String    @db.VarChar(1200) // The feedback text MUST be compressed! 
-  score             Int
+  feedbackText      String    @db.Text // The feedback text MUST be compressed! 
+  feedbackTextReference String? @db.Text // The feedback text MUST be compressed!
+  score             Int?
   isLiked           Boolean
   boost             ResumeBoost @relation(fields: [boostId], references: [boostId], onDelete: Cascade)
   @@index([boostId], name: "idxBoostId")

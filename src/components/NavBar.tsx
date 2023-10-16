@@ -1,8 +1,10 @@
-import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NavBar: React.FC = (props) => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   var userGreeting = <div></div>;
 
@@ -29,16 +31,34 @@ const NavBar: React.FC = (props) => {
       </div>
     );
   }
+
+  const handleLogoClick = () => {
+    if (router.pathname === "/") {
+      window.location.reload();
+    } else {
+      router.push("/");
+    }
+  };
+
+  const aboutLinkColor =
+    router.pathname === "/about" ? "text-green-400" : "text-white";
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent p-4 pl-6 pr-6">
       <div
         className="flex items-center cursor-pointer flex-shrink-0 text-white mr-6"
-        onClick={() => window.location.reload()}
+        onClick={handleLogoClick}
       >
         <span className="font-semibold text-2xl tracking-tight">CVBoost</span>
       </div>
       <div className="flex items-center">
-        <div className="text-sm flex-grow"></div>
+        <Link href="/about">
+          <span
+            className={`${aboutLinkColor} hover:text-green-300 font-semibold py-2 mr-4 cursor-pointer`}
+          >
+            About
+          </span>
+        </Link>
         {userGreeting}
       </div>
     </nav>

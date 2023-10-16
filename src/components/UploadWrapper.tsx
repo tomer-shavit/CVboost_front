@@ -8,7 +8,6 @@ const DropzoneWrapper: React.FC<{
 }> = ({ children, setFile }) => {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      // Handle file upload here
       setFile(acceptedFiles[0]);
     },
     [setFile]
@@ -16,7 +15,7 @@ const DropzoneWrapper: React.FC<{
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    noClick: true, // This ensures that clicking doesn't pop up the file selector
+    noClick: true,
   });
 
   return (

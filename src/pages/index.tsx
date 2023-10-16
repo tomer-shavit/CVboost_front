@@ -7,7 +7,6 @@ import PreUpload from "@/components/PreUpload";
 import PostUpload from "@/components/PostUpload";
 import SomethingWentWrong from "@/components/SomethingWentWrong";
 import { useSession } from "next-auth/react";
-import DropzoneWrapper from "@/components/UploadWrapper";
 
 export default function Home() {
   const [file, setFile] = useState<File | undefined>();
