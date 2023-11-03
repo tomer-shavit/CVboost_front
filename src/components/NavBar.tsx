@@ -1,23 +1,19 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 const NavBar: React.FC = (props) => {
   const { data: session, status } = useSession();
   const router = useRouter();
-
   var userGreeting = <div></div>;
 
   if (status === "loading") {
     userGreeting = <div></div>;
-  } else if (session) {
+  } else if (session && session.user) {
     userGreeting = (
-      <div
-        className="text-white font-semibold text-md cursor-pointer"
-        onClick={() => signOut()}
-      >
-        Hi {session.user?.name}
-      </div>
+      <Dropdown dropdownText={`Hi ${session.user.name}`}></Dropdown>
     );
   } else {
     userGreeting = (

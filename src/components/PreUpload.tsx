@@ -130,7 +130,7 @@ const PreUpload: React.FC<{ setFile: (file: File) => void }> = ({
           exit={{ opacity: 0, y: "15%" }}
           className="text-center"
         >
-          <Button onClick={() => signIn()}>Lets Start!</Button>;
+          <Button onClick={() => signIn()}>Lets Start!</Button>
         </m.div>
       );
     } else if (
