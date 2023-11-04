@@ -48,7 +48,7 @@ const Dropdown: React.FC<DropdownProps> = ({ dropdownText }) => {
       {isDropdownOpen && (
         <div
           id="dropdownInformation"
-          className="z-60 bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-800 dark:divide-gray-600 absolute right-6 top-12"
+          className="z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-800 dark:divide-gray-600 absolute right-6 top-12"
         >
           <div className="py-2">
             <a
