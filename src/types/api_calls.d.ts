@@ -9,6 +9,7 @@ type Feedback = {
 };
 
 export type GptApiResponse = {
+  boost_id: string;
   edited_lines: EditedLine[];
   clarity: Feedback;
   relevance: Feedback;
